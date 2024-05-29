@@ -1,0 +1,86 @@
+/* src/styles/ProductCardStyle.css */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .imageSection {
+    background-color:whitesmoke;
+    width: 100%;
+    height: 100%; /* Set a fixed height for the image container */
+    padding: 25px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+  
+  .imageSection img {
+    background-color: transparent;
+    background: transparent;
+    /* width: 100%; */
+    /* height: 100%; */
+        /* object-fit: cover;  */
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .ellipsis-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .button {
+    flex: 1;
+    margin: 0 5px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .card-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .card-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .card-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
