@@ -6,10 +6,10 @@ const Layout = () => {
   return (
     <div>
       <Header />
-      <main>
+       <main>
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer />  */}
     </div>
   );
 };

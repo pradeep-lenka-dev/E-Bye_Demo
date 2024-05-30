@@ -1,58 +1,51 @@
 import React from 'react';
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import PrivateRoute from './PrivateRoutes';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '../componet/layout/Layout';
 import HomePage from '../page/HomePage';
 import ProductPage from '../page/ProductPage';
+import ProductDetailsPage from '../page/ProductDetailsPage';
+import CartPage from '../page/CartPage';
 
-// import CartPage from './pages/CartPage';
-// import UserProfilePage from './pages/UserProfilePage';
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+       children: [
+      {
+        index: true,
+        element: <ProductPage />,
+      },
+      {
+        path: "/details/:id",
+        element: <ProductDetailsPage />,
+      },
+      {
+        path: "/Procducts",
+        element: <ProductPage />,
+      },
+      {
+        path:"/Home",
+        element:<HomePage />
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Navigate to="/HomePage" />,
-//   },
-//   {
-//     path: "/ProductPage",
-//     element: <ProductPage />,
-//   },
-//   {
-//     path: "HomePage",
-//     element: <HomePage />,
-//   },
-//   // {
-//   //   path: "/purchase",
-//   //   element: <PrivateRoute />,
-//   //   children: [
-//   //     {
-//   //       index: true,
-//   //       element: <CartPage />,
-//   //     },
-//   //     {
-//   //       path: "checkout",
-//   //       element: <CheckoutPage />,
-//   //     },
-//   //   ],
-//   // },
-// ]);
+      },
+      {
+        path: "/cart",
+        element: (
+          <PrivateRoute 
+          element={<CartPage/>}
+          redirectTo="/Procducts"
+          />
+        )
+      }
+    ],
+  },
 
-const AppRoutes = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<ProductPage />}>
-          {/* <Route index element={<HomePage />} />
-          <Route path="products" element={<ProductPage />} /> */}
-          {/* <Route path="cart" element={<CartPage />} />
-          <Route path="profile" element={<UserProfilePage />} /> */}
-        </Route>
-      </Routes>
-    </Router>
-  );
-};
+]);
+
 function AppRoutes() {
   return <RouterProvider router={router} />;
 }

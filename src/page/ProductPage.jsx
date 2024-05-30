@@ -16,7 +16,7 @@ const mockdata = [
 ];
 
 function goToDetailsPage(id){
-  console.log("id",id)
+  console.log("id111",id)
 }
 
 const ProductPage = () => {
@@ -46,32 +46,30 @@ const ProductPage = () => {
 
   return (
     <div className='card-container' >
-      {productList.map(product =>(
-      <Link key={product.id} to={`/details/${product.id}`}> 
-      <Card onClick={goToDetailsPage(product.id)} className="card" withBorder radius="md">
-      <div className="imageSection">
-        <Image src={product.image} alt={product.title} />
-      </div>
-      <div className="card-body">
-        <Group position="apart" mt="md">
-          <Text weight={500}>{product.title}</Text>
-          {/* <Badge variant="outline">25% off</Badge> */}
-        </Group>
-        <Text size="sm" color="dimmed" className="ellipsis-text" mt="md">
-          {product.description}
-        </Text>
-        <div className="rating" mt="md">
-          <Rating rating={4.5} numReviews={120} />
-        </div>
-      </div>
-      <div className="actions">
-        <Button className="button" radius="xl">Buy Now</Button>
-        <Button className="button" radius="xl" variant="outline">Add to Cart</Button>
-      </div>
-    </Card>
-
-      </Link>
-
+      {productList.map(product => (
+        <Link className="card" key={product.id} to={`/details/${product.id}`}>
+          <Card onClick={goToDetailsPage(product.id)} className="card" withBorder radius="md">
+            <div className="imageSection">
+              <Image src={product.image} alt={product.title} />
+            </div>
+            <div className="card-body">
+              <Group position="apart" mt="md">
+                <Text weight={500}>{product.title}</Text>
+                {/* <Badge variant="outline">25% off</Badge> */}
+              </Group>
+              <Text size="sm" color="dimmed" className="ellipsis-text" mt="md">
+                {product.description}
+              </Text>
+              <div className="rating" mt="md">
+                <Rating rating={4.5} numReviews={120} />
+              </div>
+            </div>
+            <div className="actions">
+              <Button className="button" radius="xl">Buy Now</Button>
+              <Button className="button" radius="xl" variant="outline">Add to Cart</Button>
+            </div>
+          </Card>
+        </Link>
       ))}
     </div>
   );
