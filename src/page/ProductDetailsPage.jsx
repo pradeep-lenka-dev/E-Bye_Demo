@@ -5,20 +5,33 @@ import { useParams } from 'react-router-dom';
 import {fetchProductDetails} from "../service/ProductService"
 import { Container, Grid, SimpleGrid, Skeleton, rem ,Button } from '@mantine/core';
 import { IconCurrencyRupee } from '@tabler/icons-react';
+import { IconCarambola } from '@tabler/icons-react';
+
+import "../styles/ProductDetails.css"
 
 const PRIMARY_COL_HEIGHT = rem(300);
 
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const [productDetail, setData] = useState([])
+  const [productDetail, setData] = useState({
+    image: '',
+    name: '',
+    title: '',
+    description: '',
+    price: '',
+    rating: {
+      rate: '',
+      count: ''
+    }
+  });
 
   useEffect(()=>{
     // const { id } = useParams();
     const fetchProductDetail = async ()=>{
       try {
         const result = await fetchProductDetails(id)
-        console.log("🚀 ~ fetchProductDetails ~ result:", result)
+        console.log("🚀 ~ fetchProductDetails ~ result:", result.rating.rate)
         setData(result)
       } catch (error) {
         console.log("🚀 ~ getProductData ~ error:", error)
@@ -38,32 +51,24 @@ const ProductDetailsPage = () => {
     //   <p>{productDetail.description}</p>
     //   <p>ID: {id}</p>
     // </div>
-      <Container my="md">
-          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-              <div>
+    <div className="product-details-container">
+      <div className="image-container">
+        <img src={productDetail.image} alt={productDetail.name} />
+        <div className="actions">
+          <Button className="button" radius="xl">Add To Cart</Button>
+          <Button className="button" radius="xl" variant="outline">Buy Now</Button>
+        </div>
+      </div>
+      <div className="details-container">
+        <div className='details'>
 
-                  <img src={productDetail.image} alt={productDetail.name} style={{ maxWidth: '100%' }} />
-                  <div className="actions">
-                      <Button className="button" radius="xl">Add To Cart</Button>
-                      <Button className="button" radius="xl" variant="outline">Buy Now</Button>
-                  </div>
-              </div>
-              {/* <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} /> */}
-              <Grid gutter="md">
-                  <Grid.Col>
-                      <h2>{productDetail.title}</h2>
-                      <h3><span><IconCurrencyRupee stroke={2} /></span>{productDetail.price}</h3>
-                      <p>{productDetail.description}</p>
-                  </Grid.Col>
-                  {/* <Grid.Col span={6}>
-                      <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-                  </Grid.Col>
-                  <Grid.Col span={6}>
-                      <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-                  </Grid.Col> */}
-              </Grid>
-          </SimpleGrid>
-      </Container>
+        <h2>{productDetail.title}</h2>
+        <p className='rating-tag'> <span className='rating-batch'>{productDetail.rating.rate} <IconCarambola stroke={1} /></span> <span className='rating-count'>{productDetail.rating.count}Ratings</span></p>
+        <h3 className='Price'><span className='price-icon'><IconCurrencyRupee stroke={2} style={{ fontSize: '40px', fontWeight: 'bold' }} /></span> <span className='price-text'>{productDetail.price}</span></h3>
+        <p>{productDetail.description}</p>
+        </div>
+      </div>
+    </div>
 
   );
 };

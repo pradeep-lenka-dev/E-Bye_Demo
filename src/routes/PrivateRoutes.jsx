@@ -1,15 +1,15 @@
-import { Navigate, Outlet } from "react-router-dom";
-function PrivateRoute(props) {
-console.log("🚀 ~ PrivateRoute ~ props:", props.element)
+import { Navigate, Outlet, Route, Router } from "react-router-dom";
+function PrivateRoute({ element, redirectTo }) {
+// console.log("🚀 ~ PrivateRoute ~ props:", props)
 
-  const isAuth = false
+  const isAuth = true
   return isAuth ? (
     <>
       <h1>You are on your way to purchase glory!</h1>
-      {/* < {props.element} /> */}
+      {element}
     </>
   ) : (
-    <Navigate to= {props.redirectTo} />
+    <Navigate to= {redirectTo} />
   );
 }
 

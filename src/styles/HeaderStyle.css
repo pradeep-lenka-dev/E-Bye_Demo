@@ -1,49 +1,22 @@
-Search
-
-Ctrl + K
-
-
-Back to all categories
-Headers
-Header with multiple layers
-RESPONSIVE
-PRIVACY & SECURITY
-ACCOUNT SETTINGS
-SUPPORT OPTIONS
-BOOK A DEMO
-DOCUMENTATION
-COMMUNITY
-ACADEMY
-FORUMS
-Header with mega menu
-RESPONSIVE
-Home
-Features
-Learn
-Academy
-Header with menus
-RESPONSIVE
-Features
-Learn
-About
-Pricing
-Support
-Header with search
-RESPONSIVE
 .header {
-  height: rem(56px);
+ height: 75px;
   margin-bottom: rem(120px);
-  background-color: var(--mantine-color-body);
+  background-color:brown;
   border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
   padding-left: var(--mantine-spacing-md);
   padding-right: var(--mantine-spacing-md);
 }
 
 .inner {
+  padding: 15px;
   height: rem(56px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+Link{
+  text-decoration: none;
+
 }
 
 .link {
@@ -60,15 +33,23 @@ RESPONSIVE
     background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
   }
 }
-Simple header
-RESPONSIVE
-Features
-Pricing
-Learn
-Community
-Header with tabs
-RESPONSIVE
 
-Jane Spoonfighter
 
-Headers | Mantine UI
+
+.links {
+  list-style: none;
+  padding: 0;
+}
+
+.links li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.links li a {
+  text-decoration: none;
+  color: inherit; /* Inherit the color from the parent element */
+}
+
+
+

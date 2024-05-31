@@ -15,19 +15,8 @@ const mockdata = [
   { label: 'Electric', icon: IconGasStation },
 ];
 
-function goToDetailsPage(id){
-  console.log("id111",id)
-}
-
-const ProductPage = () => {
+const ProductPage = ({ addToCart }) => {
   const [productList,setData]= useState([])
-
-  const features = mockdata.map((feature) => (
-    <Center key={feature.label}>
-      <feature.icon size="1.05rem" className="icon" stroke={1.5} />
-      <Text size="xs">{feature.label}</Text>
-    </Center>
-  ));
 
   useEffect(()=>{
     const getProductData = async ()=>{
@@ -42,34 +31,31 @@ const ProductPage = () => {
     getProductData()
   },[])
 
-
-
   return (
     <div className='card-container' >
       {productList.map(product => (
-        <Link className="card" key={product.id} to={`/details/${product.id}`}>
-          <Card onClick={goToDetailsPage(product.id)} className="card" withBorder radius="md">
+        <Card key = {product.id} className="card" withBorder radius="md">
+          <Link key={product.id} to={`/details/${product.id}`}>
             <div className="imageSection">
               <Image src={product.image} alt={product.title} />
             </div>
-            <div className="card-body">
-              <Group position="apart" mt="md">
-                <Text weight={500}>{product.title}</Text>
-                {/* <Badge variant="outline">25% off</Badge> */}
-              </Group>
-              <Text size="sm" color="dimmed" className="ellipsis-text" mt="md">
-                {product.description}
-              </Text>
-              <div className="rating" mt="md">
-                <Rating rating={4.5} numReviews={120} />
-              </div>
+          </Link>
+          <div className="card-body">
+            <Group position="apart" mt="md">
+              <Text weight={500}>{product.title}</Text>
+            </Group>
+            <Text size="sm" color="dimmed" className="ellipsis-text" mt="md">
+              {product.description}
+            </Text>
+            <div className="rating" mt="md">
+              <Rating rating={4.5} numReviews={120} />
             </div>
-            <div className="actions">
-              <Button className="button" radius="xl">Buy Now</Button>
-              <Button className="button" radius="xl" variant="outline">Add to Cart</Button>
-            </div>
-          </Card>
-        </Link>
+          </div>
+          <div className="actions">
+            <Button className="button" radius="xl"  onClick={() => addToCart(product)}>Add to Cart</Button>
+            <Button className="button" radius="xl" variant="outline">Buy Now</Button>
+          </div>
+        </Card>
       ))}
     </div>
   );
